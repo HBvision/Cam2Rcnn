@@ -1,6 +1,13 @@
 
 import numpy as np
 import cv2
+import os
+import sys
+import pycocotools
+from mrcnn import utils
+#dont know why this does not work: import utils, fix above
+import mrcnn.model as modellib
+import coco
 
 
 
@@ -52,23 +59,18 @@ def display_instances(image, boxes, masks, ids, names, scores):
     return image
 
 
-if __name__ == '__main__':
+def maskrcnn(image):
     """
         test everything
     """
-    import os
-    import sys
-    import pycocotools
-    from mrcnn import utils
-    #dont know why this does not work: import utils, fix above
-    import mrcnn.model as modellib
+
 
     ROOT_DIR = os.path.abspath("../")
     sys.path.append(ROOT_DIR)  # To find local version of the library
-    # Import COCO config
+    Import COCO config
     sys.path.append(os.path.join(ROOT_DIR, "samples/coco/"))  # To find local version
 
-    import coco
+
 
     ROOT_DIR = os.getcwd()
     MODEL_DIR = os.path.join(ROOT_DIR, "logs")
@@ -105,22 +107,22 @@ if __name__ == '__main__':
         'teddy bear', 'hair drier', 'toothbrush'
     ]
 
-    capture = cv2.VideoCapture(0)
+    ##capture = cv2.VideoCapture(0)
 
     # these 2 lines can be removed if you dont have a 1080p camera.
-    capture.set(cv2.CAP_PROP_FRAME_WIDTH, 1920)
-    capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 1080)
+    #capture.set(cv2.CAP_PROP_FRAME_WIDTH, 1920)
+    #capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 1080)
 
-    while True:
-        ret, frame = capture.read()
+    ##while True:
+        ##ret, frame = capture.read()
         results = model.detect([frame], verbose=0)
         r = results[0]
         frame = display_instances(
-            frame, r['rois'], r['masks'], r['class_ids'], class_names, r['scores']
+        frame, r['rois'], r['masks'], r['class_ids'], class_names, r['scores']
         )
-        cv2.imshow('frame', frame)
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
+        ##cv2.imshow('frame', frame)
+        ##if cv2.waitKey(1) & 0xFF == ord('q'):
+           ## break
 
-    capture.release()
-cv2.destroyAllWindows()
+    #capture.release()
+#cv2.destroyAllWindows()
