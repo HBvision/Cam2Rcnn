@@ -40,10 +40,10 @@ MODEL_DIR = os.path.join(ROOT_DIR, "logs")
 COCO_MODEL_PATH = os.path.join(ROOT_DIR, "mask_rcnn_coco.h5")
 # Download COCO trained weights from Releases if needed
 if not os.path.exists(COCO_MODEL_PATH):
-    utils.download_trained_weights(COCO_MODEL_PATH)
+    utils.download_trained_weights(COCO_Mgit rm --cached MOT17testbenchODEL_PATH)
 
 # Directory of images to run detection on
-IMAGE_DIR = os.path.join(ROOT_DIR, "MOT17testbench/data/HB/HB03/img1")
+IMAGE_DIR = os.path.join(ROOT_DIR, "test/PETS09-S2L2/img1")
 
 # ## Configurations
 # 
@@ -128,7 +128,7 @@ class_names = ['BG', 'person']
 # file_names = next(os.walk(IMAGE_DIR))[2]
 # image = skimage.io.imread(os.path.join(IMAGE_DIR, random.choice(file_names)))
 #f = open("test_output.txt","w")
-f2 = open("TestOutput/HB03_output.txt","w")
+f2 = open("TestOutput/PETS09-S2L2_output.txt","w")
 
 frame = 0
 
